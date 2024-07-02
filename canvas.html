@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布展示</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <img src="./小猪.png" class="logo">
+            <ul>
+                <li class="menu-link"><a href="index.html">首页</a></li>
+                <li><a href="media.html">媒体</a></li>
+                <li><a href="show_file.html">用户展示</a></li>
+                <li><a href="canvas.html">画布</a></li>
+            </ul>
+            <img src="./user.jpg" class="user-pic" onclick="toggleMenu()">
+
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="./user.jpg">  
+                        <h2>ye</h2>          
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./avatar.png">
+                        <p>Edit Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./setting.png">
+                        <p>Settings & Privacy</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./report spam.png">
+                        <p>Help & Support</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./remove.png">
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <canvas id="mycanvas" width="1000" height="750" style="margin-left: 100px;"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let subMenu =document.getElementById("subMenu")
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+
+        function render() { //渲染页面
+            const uname = localStorage.getItem('uname')
+            const displayname = document.querySelector('h2')
+            displayname.innerHTML = uname
+        }
+        render()
+        var canvas=document.getElementById("mycanvas");
+        var context=canvas.getContext("2d");
+
+        context.font = "30px Arial";
+        context.fillStyle = "black";
+        context.shadowColor = "rgba(0, 0, 0, 0.5)";
+        context.shadowOffsetX = 3;
+        context.shadowOffsetY = 3;
+        context.shadowBlur = 4;
+        context.fillText("叶一楠", 450, 50);
+        
+        var img = new Image();
+        img.src = "zc.png"; 
+        img.onload = function() {
+            context.drawImage(img, 350, 100, 300, 100); 
+        };
+        
+        var gradient = context.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.height/2);
+        gradient.addColorStop(0, "red"); 
+        gradient.addColorStop(0.5, "yellow"); 
+        gradient.addColorStop(1, "red"); 
+        context.fillStyle = gradient;
+        context.fillRect(400,300,250,150); 
+
+        var x = 100;
+        var y = 100;
+        var radius = 50;
+        var alpha = 1.0;
+        
+        for (var i = 0; i < 10; i++) {
+            context.fillStyle = "rgba(255, 0, 0, " + alpha + ")";
+            context.beginPath();
+            context.arc(x, y, radius, 0, 2 * Math.PI);
+            context.fill();
+            radius -= 5;
+            alpha -= 0.1;
+            y += 2.5 * radius;
+        }
+
+                
+        context.strokeStyle = "rgb(255,255,0)";
+        context.fillStyle = "rgb(255,255,0)"
+
+        context.beginPath();
+        context.moveTo(750, 100);
+        context.lineTo(750+Math.cos(Math.PI*3/10)*100, 200+Math.sin(Math.PI*3/10)*100);
+        context.lineTo(750-Math.cos(Math.PI*1/10)*100, 200-Math.sin(Math.PI*1/10)*100);
+        context.lineTo(750+Math.cos(Math.PI*1/10)*100, 200-Math.sin(Math.PI*1/10)*100);
+        context.lineTo(750-Math.cos(Math.PI*3/10)*100, 200+Math.sin(Math.PI*3/10)*100);
+        context.lineTo(750,100);
+        context.fill();
+        context.stroke();
+        context.closePath();
+        
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height;
+        
+        var startRadius = 0;
+        var endRadius = 250;
+        var angle = Math.PI;
+        
+        for (var radius = startRadius; radius <= endRadius; radius += 15) {
+            context.beginPath();
+            context.arc(centerX, centerY, radius,Math.PI+angle/4 , Math.PI + angle/2+angle/4);
+            context.stroke();
+        }    
+    </script>
+    <style>
+        .content{
+            background-color: white;
+            width: 1200px;
+            height: 750px;
+            margin: auto;
+        }
+
+        .mycanvas{
+            margin: auto;
+        }
+    </style>
+</body>
+</html>

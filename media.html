@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体展示</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <img src="./小猪.png" class="logo">
+            <ul>
+                <li class="menu-link"><a href="index.html">首页</a></li>
+                <li><a href="media.html">媒体</a></li>
+                <li><a href="show_file.html">用户展示</a></li>
+                <li><a href="canvas.html">画布</a></li>
+            </ul>
+            <img src="./user.jpg" class="user-pic" onclick="toggleMenu()">
+
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="./user.jpg">  
+                        <h2>ye</h2>          
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./avatar.png">
+                        <p>Edit Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./setting.png">
+                        <p>Settings & Privacy</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./report spam.png">
+                        <p>Help & Support</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./remove.png">
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <video src="sea.mp4" controls="controls" class="video"></video>
+            <audio src="周杰伦-东风破.flac" controls="controls"></audio>
+            <img src="gate.jpg" class="pic">
+        </div>
+    </div>
+
+    <script>
+        let subMenu =document.getElementById("subMenu")
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+
+        function render() { //渲染页面
+            const uname = localStorage.getItem('uname')
+            const displayname = document.querySelector('h2')
+            displayname.innerHTML = uname
+        }
+        render()
+    </script>
+    <style>
+        .content{
+            background-color: white;
+            width: 1200px;
+            height: 660px;
+            margin: auto;
+        }
+
+        .video{
+            width: 300px;
+            height: 600px;
+        }
+
+        .pic{
+            width: 550px;
+            height: 300px;
+        }
+    </style>
+</body>
+</html>

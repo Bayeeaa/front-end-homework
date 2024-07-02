@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+</head>
+<body>
+    <div class="login">
+        <h2 style="margin-left: 175px;">登录</h2>
+        <div class="login_content">
+            <div>
+            账号：<input type="text" name="uname">    
+            </div>
+            <br>
+            <div>
+            密码：<input type="password">
+            </div>
+        </div>
+        <button class="bn" onclick="jump()">确认</button>
+        <button class="bn1" onclick="register()">注册</button>
+    </div>
+</body>
+<style>
+    .login{
+        background-color: beige;
+        width: 400px;
+        height: 250px;
+        margin: auto;
+        position: absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        border:0.8px solid black;
+    }
+
+    .login_content{
+        width: 280px;
+        margin-left: 60px;
+        margin-top: 40px;
+        padding-left: 20px;
+    }
+
+    .bn{
+        margin-left: 120px;
+        margin-top: 30px;
+        width: 60px;
+        height: 30px;
+    }
+
+    .bn1{
+        margin-left: 50px;
+        margin-top: 30px;
+        width: 60px;
+        height: 30px;
+    }
+</style>
+<script>
+    function jump() {
+        const username = document.querySelector('[name=uname]')
+        localStorage.setItem('uname', username.value) //将用户名存入本地
+        location.href = "./index.html" //跳转
+    }
+
+    function register() {
+        location.href = "./register.html"
+    }
+</script>
+</html>

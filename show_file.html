@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户展示</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <img src="./小猪.png" class="logo">
+            <ul>
+                <li class="menu-link"><a href="index.html">首页</a></li>
+                <li><a href="media.html">媒体</a></li>
+                <li><a href="show_file.html">用户展示</a></li>
+                <li><a href="canvas.html">画布</a></li>
+            </ul>
+            <img src="./user.jpg" class="user-pic" onclick="toggleMenu()">
+
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="./user.jpg">  
+                        <h2>ye</h2>          
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./avatar.png">
+                        <p>Edit Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./setting.png">
+                        <p>Settings & Privacy</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./report spam.png">
+                        <p>Help & Support</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="./remove.png">
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div>
+                <span>UserName: </span><span id="name">UserName</span><br>
+                <span>UserNumber: </span><span id="number">UserNumber</span><br>
+                <span>UserYear: </span><span id="year">UserYear</span><br>
+                <span>UserSex: </span><span id="sex">UserSex</span><br>
+                <div id="change">Hello World</div>
+                <div class="box1">
+                    <div id="move">动画展示</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let subMenu =document.getElementById("subMenu")
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+
+        function render() { //渲染页面
+            const uname = localStorage.getItem('uname')
+            const displayname = document.querySelector('h2')
+            displayname.innerHTML = uname
+        }
+        render()
+
+        function User(name, number, year, sex) {
+        this.name = name;
+        this.number = number;
+        this.year = year;
+        this.sex = sex;
+        }
+
+        var User1 = new User("ye", "114514", "18", "man")
+        var User2 = new User("bayeeaa", "123", "20", "man")
+        var User3 = new User("Wattson", "123456789", "20", "woman")
+        const name = document.querySelector('#name')
+        const number = document.querySelector('#number')
+        const year = document.querySelector('#year')
+        const sex = document.querySelector('#sex')
+        u = User3 //此处修改用户
+        name.innerHTML = u.name
+        number.innerHTML = u.number
+        year.innerHTML = u.year
+        sex.innerHTML = u.sex
+
+        const p = document.createElement('p') //DOM创建标签
+        p.innerText = 'New Label'
+        document.querySelector('.content').appendChild(p)
+
+        var pn = $("#change").addClass("set-color") //jquery封装属性
+        pn.css({"font-family":"华文新魏"}) //修改css
+        // pn.removeClass("set-color") //删除css
+
+        $('.box1').click(function(){
+            $('#move').animate({
+                fontSize: '50px',
+            },3000).show();
+
+            $('#move').animate({  
+                fontSize: '18px',
+            },3000).show(); 
+            
+            $('#move').animate({
+                left: '+=70px',
+            },3000).show();
+
+            $('#move').animate({
+                left: '-=70px',
+            },3000).show();
+        })
+
+    </script>
+    <style>
+        .content{
+            background-color: white;
+            width: 1200px;
+            height: 660px;
+            margin: auto;
+        }
+
+        span{
+            font-size: 30px;
+        }
+
+        .set-color{
+            color: red;
+            font-size: 30px;
+        }
+
+        .box1{
+            background-color: aqua;
+            width: 300px;
+            height: 100px;
+        }
+
+        #move{
+            position: relative; 
+        }
+    </style>
+</body>
+</html>
